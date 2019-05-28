@@ -91,5 +91,16 @@ public class ComissaoTests {
         Assertions.assertThat(comissao.getPercentualDeComissao())
                 .isEqualByComparingTo(BigDecimal.valueOf(0.05));
     }
-
+    
+    @Test
+    public void vendaNullTests() {
+    	try {
+    		Vendedor vendedor = new Vendedor("Vendedor 1", BigDecimal.ONE);
+            Comissao comissao = new Comissao(vendedor, null);
+            Assertions.assertThat(comissao.getValorDeComissao())
+                    .isEqualByComparingTo(BigDecimal.ZERO);
+    	} catch (Exception e) {
+    		Assertions.assertThat(e).isInstanceOf(NullPointerException.class);
+    	}  	
+    }
 }
